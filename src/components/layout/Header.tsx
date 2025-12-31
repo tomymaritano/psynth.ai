@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
-import { Menu } from 'lucide-react'
+import { Menu, FileText } from 'lucide-react'
 import { useState } from 'react'
 
 const navItems = [
@@ -21,28 +21,28 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <header className="sticky top-0 z-[100] bg-white border-b border-gray-200">
+      <div className="max-w-[1280px] mx-auto px-6 py-4">
+        <div className="flex items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">AF</span>
+          <a href="#" className="flex items-center gap-2.5">
+            <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
+              <FileText className="w-[18px] h-[18px] text-white" strokeWidth={2} />
             </div>
-            <span className="font-semibold text-lg text-gray-900">AssessFlow</span>
-          </div>
+            <span className="text-xl font-bold text-gray-900 tracking-tight">AssessFlow</span>
+          </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-2" aria-label="Main navigation">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  'px-3 py-2 rounded-md text-sm font-medium transition-colors',
+                  'px-4 py-2 rounded-md text-sm font-medium transition-all duration-150',
                   item.active
-                    ? 'text-primary-600 bg-primary-50'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'text-primary-700 bg-primary-50'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                 )}
                 aria-current={item.active ? 'page' : undefined}
               >
@@ -69,11 +69,11 @@ export function Header() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className="flex items-center gap-2 rounded-full focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+                  className="flex items-center rounded-full transition-shadow duration-150 hover:ring-2 hover:ring-primary-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
                   aria-label="User menu"
                 >
-                  <Avatar className="h-8 w-8">
-                    <AvatarFallback className="bg-primary-100 text-primary-700 text-sm font-medium">
+                  <Avatar className="h-9 w-9">
+                    <AvatarFallback className="bg-primary-100 text-primary-700 text-sm font-semibold">
                       DR
                     </AvatarFallback>
                   </Avatar>
@@ -90,17 +90,17 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="md:hidden py-3 border-t border-gray-100" aria-label="Mobile navigation">
+          <nav className="md:hidden py-3 border-t border-gray-100 mt-4" aria-label="Mobile navigation">
             <div className="flex flex-col gap-1">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   className={cn(
-                    'px-3 py-2 rounded-md text-sm font-medium transition-colors',
+                    'px-4 py-2 rounded-md text-sm font-medium transition-all duration-150',
                     item.active
-                      ? 'text-primary-600 bg-primary-50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                      ? 'text-primary-700 bg-primary-50'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                   )}
                   aria-current={item.active ? 'page' : undefined}
                 >

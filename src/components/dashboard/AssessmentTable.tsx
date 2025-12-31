@@ -1,24 +1,9 @@
 import type { Assessment } from '@/types'
-import { formatDate, getInitials } from '@/lib/utils'
+import { formatDate, formatTime, getInitials } from '@/lib/utils'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
 import { StatusBadge } from './StatusBadge'
 import { ScoreBar } from './ScoreBar'
-import { Eye, Download, MoreHorizontal } from 'lucide-react'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { Eye, Download, MoreVertical } from 'lucide-react'
 
 interface AssessmentTableProps {
   assessments: Assessment[]
@@ -27,23 +12,36 @@ interface AssessmentTableProps {
 
 export function AssessmentTable({ assessments, onSelect }: AssessmentTableProps) {
   return (
-    <div className="hidden md:block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-gray-50 hover:bg-gray-50">
-            <TableHead className="font-semibold text-gray-700">Patient</TableHead>
-            <TableHead className="font-semibold text-gray-700">Assessment Type</TableHead>
-            <TableHead className="font-semibold text-gray-700">Status</TableHead>
-            <TableHead className="font-semibold text-gray-700 w-[180px]">Score</TableHead>
-            <TableHead className="font-semibold text-gray-700">Date</TableHead>
-            <TableHead className="font-semibold text-gray-700 text-right">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {assessments.map((assessment) => (
-            <TableRow
+    <table className="w-full border-collapse">
+        <thead>
+          <tr className="bg-gray-50 border-b border-gray-200">
+            <th className="text-left py-3.5 px-5 pl-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Patient
+            </th>
+            <th className="text-left py-3.5 px-5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Assessment Type
+            </th>
+            <th className="text-left py-3.5 px-5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Status
+            </th>
+            <th className="text-left py-3.5 px-5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Score
+            </th>
+            <th className="text-left py-3.5 px-5 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Date
+            </th>
+            <th className="text-left py-3.5 px-5 pr-6 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {assessments.map((assessment, index) => (
+            <tr
               key={assessment.id}
-              className="cursor-pointer hover:bg-gray-50 transition-colors"
+              className={`cursor-pointer hover:bg-gray-50 transition-colors duration-100 ${
+                index !== assessments.length - 1 ? 'border-b border-gray-100' : ''
+              }`}
               onClick={() => onSelect(assessment)}
               tabIndex={0}
               onKeyDown={(e) => {
@@ -56,86 +54,77 @@ export function AssessmentTable({ assessments, onSelect }: AssessmentTableProps)
               aria-label={`View details for ${assessment.patient.name}'s ${assessment.type} assessment`}
             >
               {/* Patient */}
-              <TableCell>
+              <td className="py-4 px-5 pl-6">
                 <div className="flex items-center gap-3">
-                  <Avatar className="h-9 w-9">
-                    <AvatarFallback className="bg-primary-100 text-primary-700 text-sm font-medium">
+                  <Avatar className="h-10 w-10">
+                    <AvatarFallback className="bg-gray-100 text-gray-600 text-sm font-semibold">
                       {getInitials(assessment.patient.name)}
                     </AvatarFallback>
                   </Avatar>
-                  <div>
-                    <p className="font-medium text-gray-900">{assessment.patient.name}</p>
-                    <p className="text-xs text-gray-500">{assessment.patient.id}</p>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-semibold text-sm text-gray-900">
+                      {assessment.patient.name}
+                    </span>
+                    <span className="text-xs text-gray-500">{assessment.patient.id}</span>
                   </div>
                 </div>
-              </TableCell>
+              </td>
 
               {/* Assessment Type */}
-              <TableCell>
-                <div>
-                  <p className="font-medium text-gray-900">{assessment.type}</p>
-                  <p className="text-xs text-gray-500">{assessment.id}</p>
-                </div>
-              </TableCell>
+              <td className="py-4 px-5">
+                <span className="font-medium text-sm text-gray-800">{assessment.type}</span>
+              </td>
 
               {/* Status */}
-              <TableCell>
+              <td className="py-4 px-5">
                 <StatusBadge status={assessment.status} />
-              </TableCell>
+              </td>
 
               {/* Score */}
-              <TableCell>
+              <td className="py-4 px-5">
                 <ScoreBar score={assessment.score} />
-              </TableCell>
+              </td>
 
               {/* Date */}
-              <TableCell>
-                <p className="text-sm text-gray-600">{formatDate(assessment.date)}</p>
-              </TableCell>
+              <td className="py-4 px-5">
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-medium text-sm text-gray-800">
+                    {formatDate(assessment.date)}
+                  </span>
+                  <span className="text-xs text-gray-500">{formatTime(assessment.date)}</span>
+                </div>
+              </td>
 
               {/* Actions */}
-              <TableCell className="text-right">
-                <div className="flex items-center justify-end gap-1" onClick={(e) => e.stopPropagation()}>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0"
+              <td className="py-4 px-5 pr-6">
+                <div
+                  className="flex items-center gap-1"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <button
+                    className="w-8 h-8 flex items-center justify-center rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all duration-150"
                     onClick={() => onSelect(assessment)}
                     aria-label="View assessment"
                   >
-                    <Eye className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="h-8 w-8 p-0"
+                    <Eye className="w-4 h-4" strokeWidth={2} />
+                  </button>
+                  <button
+                    className="w-8 h-8 flex items-center justify-center rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all duration-150"
                     aria-label="Download assessment"
                   >
-                    <Download className="h-4 w-4" />
-                  </Button>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0"
-                        aria-label="More options"
-                      >
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Edit</DropdownMenuItem>
-                      <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                      <DropdownMenuItem className="text-error-500">Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                    <Download className="w-4 h-4" strokeWidth={2} />
+                  </button>
+                  <button
+                    className="w-8 h-8 flex items-center justify-center rounded-md text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-all duration-150"
+                    aria-label="More options"
+                  >
+                    <MoreVertical className="w-4 h-4" strokeWidth={2} />
+                  </button>
                 </div>
-              </TableCell>
-            </TableRow>
+              </td>
+            </tr>
           ))}
-        </TableBody>
-      </Table>
-    </div>
+        </tbody>
+      </table>
   )
 }

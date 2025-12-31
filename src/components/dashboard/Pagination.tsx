@@ -1,5 +1,4 @@
 import type { PaginationState } from '@/types'
-import { Button } from '@/components/ui/button'
 import { cn, getPageNumbers, getTotalPages } from '@/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
@@ -19,67 +18,128 @@ export function Pagination({ pagination, onPageChange }: PaginationProps) {
   const endItem = Math.min(currentPage * pageSize, totalItems)
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4">
+    <div className="hidden md:flex items-center justify-between px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-xl">
       {/* Results Info */}
-      <p className="text-sm text-gray-500">
-        Showing <span className="font-medium text-gray-700">{startItem}</span> to{' '}
-        <span className="font-medium text-gray-700">{endItem}</span> of{' '}
-        <span className="font-medium text-gray-700">{totalItems}</span> results
-      </p>
+      <span className="text-[13px] text-gray-500">
+        Showing {startItem}-{endItem} of {totalItems} assessments
+      </span>
 
       {/* Page Controls */}
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-2">
         {/* Previous */}
-        <Button
-          variant="outline"
-          size="sm"
+        <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
+          className={cn(
+            'w-9 h-9 flex items-center justify-center rounded-md border border-gray-300 bg-white text-gray-700 text-sm font-medium transition-all duration-150',
+            currentPage === 1
+              ? 'opacity-50 cursor-not-allowed'
+              : 'hover:bg-gray-100 hover:border-gray-400'
+          )}
           aria-label="Previous page"
-          className="gap-1"
         >
-          <ChevronLeft className="h-4 w-4" />
-          <span className="hidden sm:inline">Previous</span>
-        </Button>
+          <ChevronLeft className="w-4 h-4" strokeWidth={2} />
+        </button>
 
         {/* Page Numbers */}
-        <div className="flex items-center gap-1 px-2">
-          {pageNumbers.map((pageNum, index) =>
-            pageNum === null ? (
-              <span key={`ellipsis-${index}`} className="px-2 text-gray-400">
-                ...
-              </span>
-            ) : (
-              <Button
-                key={pageNum}
-                variant={pageNum === currentPage ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => onPageChange(pageNum)}
-                className={cn(
-                  'min-w-[2rem]',
-                  pageNum === currentPage && 'bg-primary-600 hover:bg-primary-700'
-                )}
-                aria-label={`Page ${pageNum}`}
-                aria-current={pageNum === currentPage ? 'page' : undefined}
-              >
-                {pageNum}
-              </Button>
-            )
-          )}
-        </div>
+        {pageNumbers.map((pageNum, index) =>
+          pageNum === null ? (
+            <button
+              key={`ellipsis-${index}`}
+              className="w-9 h-9 flex items-center justify-center rounded-md border border-gray-300 bg-white text-gray-700 text-sm font-medium"
+              disabled
+            >
+              ...
+            </button>
+          ) : (
+            <button
+              key={pageNum}
+              onClick={() => onPageChange(pageNum)}
+              className={cn(
+                'w-9 h-9 flex items-center justify-center rounded-md border text-sm font-medium transition-all duration-150',
+                pageNum === currentPage
+                  ? 'bg-primary-600 border-primary-600 text-white'
+                  : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-100 hover:border-gray-400'
+              )}
+              aria-label={`Page ${pageNum}`}
+              aria-current={pageNum === currentPage ? 'page' : undefined}
+            >
+              {pageNum}
+            </button>
+          )
+        )}
 
         {/* Next */}
-        <Button
-          variant="outline"
-          size="sm"
+        <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
+          className={cn(
+            'w-9 h-9 flex items-center justify-center rounded-md border border-gray-300 bg-white text-gray-700 text-sm font-medium transition-all duration-150',
+            currentPage === totalPages
+              ? 'opacity-50 cursor-not-allowed'
+              : 'hover:bg-gray-100 hover:border-gray-400'
+          )}
           aria-label="Next page"
-          className="gap-1"
         >
-          <span className="hidden sm:inline">Next</span>
-          <ChevronRight className="h-4 w-4" />
-        </Button>
+          <ChevronRight className="w-4 h-4" strokeWidth={2} />
+        </button>
+      </div>
+    </div>
+  )
+}
+
+// Mobile pagination component
+export function MobilePagination({ pagination, onPageChange }: PaginationProps) {
+  const { currentPage, pageSize, totalItems } = pagination
+  const totalPages = getTotalPages(totalItems, pageSize)
+
+  if (totalItems === 0) return null
+
+  const startItem = (currentPage - 1) * pageSize + 1
+  const endItem = Math.min(currentPage * pageSize, totalItems)
+
+  return (
+    <div className="md:hidden flex flex-col items-center gap-3 py-4">
+      {/* Results Info */}
+      <span className="text-[13px] text-gray-500">
+        Showing {startItem}-{endItem} of {totalItems} assessments
+      </span>
+
+      {/* Simple prev/next controls */}
+      <div className="flex items-center gap-2">
+        <button
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className={cn(
+            'px-4 py-2 flex items-center gap-1 rounded-md border border-gray-300 bg-white text-gray-700 text-sm font-medium transition-all duration-150',
+            currentPage === 1
+              ? 'opacity-50 cursor-not-allowed'
+              : 'hover:bg-gray-100 hover:border-gray-400'
+          )}
+          aria-label="Previous page"
+        >
+          <ChevronLeft className="w-4 h-4" strokeWidth={2} />
+          Previous
+        </button>
+
+        <span className="px-4 text-sm text-gray-500">
+          {currentPage} / {totalPages}
+        </span>
+
+        <button
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className={cn(
+            'px-4 py-2 flex items-center gap-1 rounded-md border border-gray-300 bg-white text-gray-700 text-sm font-medium transition-all duration-150',
+            currentPage === totalPages
+              ? 'opacity-50 cursor-not-allowed'
+              : 'hover:bg-gray-100 hover:border-gray-400'
+          )}
+          aria-label="Next page"
+        >
+          Next
+          <ChevronRight className="w-4 h-4" strokeWidth={2} />
+        </button>
       </div>
     </div>
   )

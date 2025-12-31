@@ -32,28 +32,31 @@ export function FilterBar({
   const hasActiveFilters = filters.search || filters.status || filters.type
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3">
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 flex-wrap">
       {/* Search */}
-      <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+      <div className="relative flex-1 min-w-[240px] max-w-[320px]">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
         <Input
           type="text"
-          placeholder="Search by patient or ID..."
+          placeholder="Search patients or assessments..."
           value={filters.search}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="pl-9"
+          className="pl-[38px] h-[38px] text-sm border-gray-300 focus:border-primary-500 focus:ring-primary-100"
           aria-label="Search assessments"
         />
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-3">
         {/* Status Filter */}
         <Select
           value={filters.status || 'all'}
           onValueChange={(value) => onStatusChange(value === 'all' ? '' : value as AssessmentStatus)}
         >
-          <SelectTrigger className="w-[140px]" aria-label="Filter by status">
+          <SelectTrigger
+            className="w-[140px] h-[38px] text-sm font-medium border-gray-300"
+            aria-label="Filter by status"
+          >
             <SelectValue placeholder="All Status" />
           </SelectTrigger>
           <SelectContent>
@@ -71,7 +74,10 @@ export function FilterBar({
           value={filters.type || 'all'}
           onValueChange={(value) => onTypeChange(value === 'all' ? '' : value as AssessmentTypeCode)}
         >
-          <SelectTrigger className="w-[180px]" aria-label="Filter by assessment type">
+          <SelectTrigger
+            className="w-[160px] h-[38px] text-sm font-medium border-gray-300"
+            aria-label="Filter by assessment type"
+          >
             <SelectValue placeholder="All Types" />
           </SelectTrigger>
           <SelectContent>
@@ -85,9 +91,12 @@ export function FilterBar({
         </Select>
 
         {/* Date Filter (Static/Placeholder) */}
-        <Button variant="outline" className="gap-2" disabled>
-          <Calendar className="h-4 w-4" />
-          <span className="hidden sm:inline">Last 30 days</span>
+        <Button
+          variant="outline"
+          className="h-[38px] gap-2 text-sm font-medium text-gray-700 border-gray-300 hover:border-gray-400"
+        >
+          <Calendar className="w-4 h-4 text-gray-500" />
+          <span>Last 30 days</span>
         </Button>
 
         {/* Clear Filters */}
@@ -96,10 +105,10 @@ export function FilterBar({
             variant="ghost"
             size="sm"
             onClick={onClearFilters}
-            className="text-gray-500 hover:text-gray-700"
+            className="h-[38px] text-gray-500 hover:text-gray-700"
             aria-label="Clear all filters"
           >
-            <X className="h-4 w-4 mr-1" />
+            <X className="w-4 h-4 mr-1" />
             Clear
           </Button>
         )}

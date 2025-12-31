@@ -6,10 +6,10 @@ import {
   AssessmentTable,
   AssessmentCardList,
   Pagination,
+  MobilePagination,
   EmptyState,
   AssessmentDetail,
 } from '@/components/dashboard'
-import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 
 function App() {
@@ -36,26 +36,26 @@ function App() {
   return (
     <Layout>
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Assessments</h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Manage and review patient psychological assessments
-          </p>
+      <div className="mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+          <div className="flex flex-col gap-1">
+            <h1 className="text-[28px] font-bold text-gray-900 tracking-tight">Assessments</h1>
+            <p className="text-sm text-gray-500">
+              Manage and review patient psychological assessments
+            </p>
+          </div>
+          <button className="inline-flex items-center gap-2 px-[18px] py-2.5 bg-primary-600 hover:bg-primary-700 text-white text-sm font-medium rounded-md shadow-sm hover:shadow-md transition-all duration-150 sm:self-start">
+            <Plus className="w-4 h-4" strokeWidth={2} />
+            New Assessment
+          </button>
         </div>
-        <Button className="gap-2 bg-primary-600 hover:bg-primary-700 sm:self-start">
-          <Plus className="h-4 w-4" />
-          New Assessment
-        </Button>
-      </div>
 
-      {/* Stats Grid */}
-      <div className="mb-6">
-        <StatsGrid stats={stats} />
-      </div>
+        {/* Stats Grid */}
+        <div className="mb-6">
+          <StatsGrid stats={stats} />
+        </div>
 
-      {/* Filter Bar */}
-      <div className="mb-6">
+        {/* Filter Bar */}
         <FilterBar
           filters={filters}
           assessmentTypes={assessmentTypes}
@@ -72,11 +72,17 @@ function App() {
         <EmptyState hasFilters={hasActiveFilters} onClearFilters={clearFilters} />
       ) : (
         <>
-          {/* Desktop Table */}
-          <AssessmentTable
-            assessments={data}
-            onSelect={selectAssessment}
-          />
+          {/* Desktop Table + Pagination */}
+          <div className="hidden md:block bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <AssessmentTable
+              assessments={data}
+              onSelect={selectAssessment}
+            />
+            <Pagination
+              pagination={pagination}
+              onPageChange={setPage}
+            />
+          </div>
 
           {/* Mobile Cards */}
           <AssessmentCardList
@@ -84,8 +90,8 @@ function App() {
             onSelect={selectAssessment}
           />
 
-          {/* Pagination */}
-          <Pagination
+          {/* Mobile Pagination */}
+          <MobilePagination
             pagination={pagination}
             onPageChange={setPage}
           />

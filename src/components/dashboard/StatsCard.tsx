@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import { TrendingUp, TrendingDown, Users, CheckCircle, Clock, FileText } from 'lucide-react'
+import { ArrowUp, ArrowDown, Users, CheckCircle, Clock, FileText } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 type StatsVariant = 'primary' | 'success' | 'warning' | 'purple'
@@ -12,34 +12,30 @@ interface StatsCardProps {
   icon?: 'total' | 'completed' | 'progress' | 'patients'
 }
 
-const variantStyles: Record<StatsVariant, { bg: string; icon: string; iconBg: string }> = {
+const variantStyles: Record<StatsVariant, { icon: string; iconBg: string }> = {
   primary: {
-    bg: 'bg-white',
     icon: 'text-primary-600',
     iconBg: 'bg-primary-50',
   },
   success: {
-    bg: 'bg-white',
     icon: 'text-success-500',
     iconBg: 'bg-success-50',
   },
   warning: {
-    bg: 'bg-white',
     icon: 'text-warning-500',
     iconBg: 'bg-warning-50',
   },
   purple: {
-    bg: 'bg-white',
-    icon: 'text-purple-500',
-    iconBg: 'bg-purple-50',
+    icon: 'text-purple-600',
+    iconBg: 'bg-purple-100',
   },
 }
 
 const iconMap: Record<string, ReactNode> = {
-  total: <FileText className="h-5 w-5" />,
-  completed: <CheckCircle className="h-5 w-5" />,
-  progress: <Clock className="h-5 w-5" />,
-  patients: <Users className="h-5 w-5" />,
+  total: <FileText className="w-5 h-5" strokeWidth={2} />,
+  completed: <CheckCircle className="w-5 h-5" strokeWidth={2} />,
+  progress: <Clock className="w-5 h-5" strokeWidth={2} />,
+  patients: <Users className="w-5 h-5" strokeWidth={2} />,
 }
 
 export function StatsCard({
@@ -54,39 +50,39 @@ export function StatsCard({
   const isNegative = trend && trend < 0
 
   return (
-    <div
-      className={cn(
-        'rounded-xl border border-gray-200 p-5 shadow-sm transition-shadow hover:shadow-md',
-        styles.bg
-      )}
-    >
-      <div className="flex items-start justify-between">
-        <div className={cn('rounded-lg p-2.5', styles.iconBg)}>
+    <div className="bg-white rounded-xl border border-gray-200 p-5 flex flex-col gap-3">
+      <div className="flex items-center justify-between">
+        {/* Icon */}
+        <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center', styles.iconBg)}>
           <span className={styles.icon}>{iconMap[icon]}</span>
         </div>
 
+        {/* Trend */}
         {trend !== undefined && trend !== 0 && (
           <div
             className={cn(
-              'flex items-center gap-1 text-xs font-medium rounded-full px-2 py-0.5',
-              isPositive && 'text-success-700 bg-success-50',
-              isNegative && 'text-error-700 bg-error-50'
+              'flex items-center gap-1 text-xs font-medium',
+              isPositive && 'text-success-500',
+              isNegative && 'text-error-500'
             )}
           >
             {isPositive ? (
-              <TrendingUp className="h-3 w-3" />
+              <ArrowUp className="w-3.5 h-3.5" strokeWidth={2} />
             ) : (
-              <TrendingDown className="h-3 w-3" />
+              <ArrowDown className="w-3.5 h-3.5" strokeWidth={2} />
             )}
             <span>{Math.abs(trend)}%</span>
           </div>
         )}
       </div>
 
-      <div className="mt-4">
-        <p className="text-2xl font-bold text-gray-900">{value}</p>
-        <p className="text-sm text-gray-500 mt-1">{label}</p>
+      {/* Value */}
+      <div className="text-[32px] font-bold text-gray-900 leading-none tracking-tight">
+        {value}
       </div>
+
+      {/* Label */}
+      <div className="text-[13px] text-gray-500">{label}</div>
     </div>
   )
 }
