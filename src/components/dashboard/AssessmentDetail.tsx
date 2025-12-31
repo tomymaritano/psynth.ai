@@ -57,7 +57,7 @@ export function AssessmentDetail({ assessment, onClose }: AssessmentDetailProps)
         </SheetHeader>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto px-6 py-6">
+        <div className="flex-1 overflow-y-auto p-6">
           {/* Patient Header */}
           <div className="flex items-center gap-4 pb-6 border-b border-gray-200 mb-6">
             <Avatar className="h-14 w-14">
