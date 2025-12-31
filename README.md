@@ -8,6 +8,8 @@ A production-ready patient assessment management dashboard built with React 19, 
 
 **[https://psynth-ai.vercel.app](https://psynth-ai.vercel.app)**
 
+![AssessFlow Dashboard](./public/psy.png)
+
 ## Challenge Overview
 
 This project was built as part of the Psynth Front-End Engineer technical assessment. The goal was to create a functional dashboard for managing psychological assessments with:
