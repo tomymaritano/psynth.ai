@@ -9,6 +9,9 @@ import {
   MobilePagination,
   EmptyState,
   AssessmentDetail,
+  StatsGridSkeleton,
+  TableSkeleton,
+  CardListSkeleton,
 } from '@/components/dashboard'
 import { Plus } from 'lucide-react'
 
@@ -22,15 +25,17 @@ function App() {
     assessmentTypes,
     statusOptions,
     selectedAssessment,
+    isLoading,
     setSearch,
     setStatus,
     setType,
+    setDateRange,
     setPage,
     selectAssessment,
     clearFilters,
   } = useAssessments()
 
-  const hasActiveFilters = !!(filters.search || filters.status || filters.type)
+  const hasActiveFilters = !!(filters.search || filters.status || filters.type || filters.dateRange)
   const isEmpty = allFilteredData.length === 0
 
   return (
@@ -52,7 +57,7 @@ function App() {
 
         {/* Stats Grid */}
         <div className="mb-6">
-          <StatsGrid stats={stats} />
+          {isLoading ? <StatsGridSkeleton /> : <StatsGrid stats={stats} />}
         </div>
 
         {/* Filter Bar */}
@@ -63,12 +68,23 @@ function App() {
           onSearchChange={setSearch}
           onStatusChange={setStatus}
           onTypeChange={setType}
+          onDateRangeChange={setDateRange}
           onClearFilters={clearFilters}
         />
       </div>
 
       {/* Content */}
-      {isEmpty ? (
+      {isLoading ? (
+        <>
+          {/* Desktop Table Skeleton */}
+          <div className="hidden md:block bg-white rounded-xl border border-gray-200 overflow-hidden mt-6">
+            <TableSkeleton rows={5} />
+          </div>
+
+          {/* Mobile Cards Skeleton */}
+          <CardListSkeleton count={5} />
+        </>
+      ) : isEmpty ? (
         <EmptyState hasFilters={hasActiveFilters} onClearFilters={clearFilters} />
       ) : (
         <>

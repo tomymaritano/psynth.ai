@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, useEffect } from 'react'
 import type {
   Assessment,
   DashboardStats,
@@ -32,6 +32,7 @@ interface UseAssessmentsReturn {
   setSearch: (search: string) => void
   setStatus: (status: AssessmentStatus | '') => void
   setType: (type: AssessmentTypeCode | '') => void
+  setDateRange: (start: Date | null, end: Date | null) => void
   setPage: (page: number) => void
   selectAssessment: (assessment: Assessment | null) => void
   clearFilters: () => void
@@ -40,7 +41,8 @@ interface UseAssessmentsReturn {
 const initialFilters: FilterState = {
   search: '',
   status: '',
-  type: ''
+  type: '',
+  dateRange: undefined
 }
 
 export function useAssessments(): UseAssessmentsReturn {
@@ -54,7 +56,15 @@ export function useAssessments(): UseAssessmentsReturn {
   const [filters, setFilters] = useState<FilterState>(initialFilters)
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedAssessment, setSelectedAssessment] = useState<Assessment | null>(null)
-  const [isLoading] = useState(false) // Could be used for async data loading
+  const [isLoading, setIsLoading] = useState(true) // Simulate initial loading
+
+  // Simulate initial data loading (for demo purposes)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 800) // 800ms simulated loading time
+    return () => clearTimeout(timer)
+  }, [])
 
   // Derived: filtered data
   const allFilteredData = useMemo(() => {
@@ -92,6 +102,11 @@ export function useAssessments(): UseAssessmentsReturn {
     updateFiltersAndResetPage({ ...filters, type })
   }, [filters, updateFiltersAndResetPage])
 
+  const setDateRange = useCallback((start: Date | null, end: Date | null) => {
+    const dateRange = start || end ? { start, end } : undefined
+    updateFiltersAndResetPage({ ...filters, dateRange })
+  }, [filters, updateFiltersAndResetPage])
+
   const setPage = useCallback((page: number) => {
     const totalPages = getTotalPages(allFilteredData.length, PAGE_SIZE)
     if (page >= 1 && page <= totalPages) {
@@ -125,6 +140,7 @@ export function useAssessments(): UseAssessmentsReturn {
     setSearch,
     setStatus,
     setType,
+    setDateRange,
     setPage,
     selectAssessment,
     clearFilters
