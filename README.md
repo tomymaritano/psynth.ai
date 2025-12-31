@@ -1,31 +1,50 @@
 # AssessFlow Dashboard
 
-A production-ready patient assessment management dashboard built with React, TypeScript, and Tailwind CSS.
+> **Technical Challenge:** Front-End Engineer Assessment for Psynth
+
+A production-ready patient assessment management dashboard built with React 19, TypeScript, and Tailwind CSS.
+
+## Live Demo
+
+**[https://psynth-ai.vercel.app](https://psynth-ai.vercel.app)**
+
+## Challenge Overview
+
+This project was built as part of the Psynth Front-End Engineer technical assessment. The goal was to create a functional dashboard for managing psychological assessments with:
+
+- Stats overview cards
+- Filterable assessment table (search, status, type, date range)
+- Responsive design (desktop table / mobile cards)
+- Detail panel with score visualization
+- Loading states and empty states
 
 ## Quick Start
 
 ```bash
-# Install dependencies
 npm install
-
-# Run development server
 npm run dev
-
-# Run tests
-npm run test
-
-# Build for production
-npm run build
 ```
 
 ## Tech Stack
 
-- **Framework:** React 19 + TypeScript
-- **Build Tool:** Vite
-- **UI Components:** ShadCN UI (Radix primitives)
-- **Styling:** Tailwind CSS
-- **Testing:** Vitest + React Testing Library
-- **State Management:** React hooks (custom `useAssessments` hook)
+| Category | Technology |
+|----------|------------|
+| Framework | React 19 + TypeScript |
+| Build Tool | Vite |
+| UI Components | ShadCN UI (Radix primitives) |
+| Styling | Tailwind CSS |
+| Testing | Vitest + React Testing Library |
+| State | Custom hooks (`useAssessments`) |
+
+## Features
+
+- **Stats Grid:** Total, pending, completed, average score
+- **Filters:** Search (debounced 300ms), status, type, date range presets
+- **Table/Cards:** Desktop table view, mobile card view
+- **Pagination:** Client-side with page size of 5
+- **Detail Panel:** Slide-over with score gauge visualization
+- **Loading Skeletons:** Shimmer animations during load
+- **Accessibility:** ARIA labels, keyboard navigation, focus management
 
 ## Project Structure
 
@@ -34,154 +53,78 @@ src/
 ├── components/
 │   ├── ui/              # ShadCN base components
 │   ├── layout/          # Header, Layout
-│   └── dashboard/       # Domain-specific components
+│   └── dashboard/       # Domain components (Table, Cards, Filters, etc.)
 ├── hooks/
-│   └── useAssessments.ts   # Single source of truth for app state
+│   ├── useAssessments.ts   # Centralized state management
+│   └── useDebounce.ts      # Search debounce utility
 ├── lib/
-│   └── utils.ts         # Utility functions
+│   └── utils.ts         # Filter, pagination, helpers
 ├── types/
 │   └── index.ts         # TypeScript definitions
 └── data/
-    └── assessments.json # Mock data
+    └── assessments.json # Mock data (20 records)
 ```
 
-## Architecture Decisions
+## Architecture
 
-### 1. Centralized State Hook (`useAssessments`)
+### Centralized State (`useAssessments`)
 
-**Decision:** All app state lives in one custom hook.
+All application state lives in a single custom hook:
 
-**Why:**
-- Single source of truth for data, filters, pagination, and selection
-- Easy to test - logic is decoupled from UI
-- Components become pure renderers of props
-- No prop drilling issues
-
-**Contract:**
 ```typescript
-{
-  data: Assessment[]           // paginated & filtered
-  allFilteredData: Assessment[] // filtered but not paginated
-  stats: DashboardStats
-  filters: FilterState
-  pagination: PaginationState
-  selectedAssessment: Assessment | null
-
+const {
+  data,                // Paginated + filtered assessments
+  allFilteredData,     // All filtered (for counts)
+  stats,               // Dashboard statistics
+  filters,             // Current filter state
+  pagination,          // Page info
+  selectedAssessment,  // Selected for detail view
   // Actions
-  setSearch, setStatus, setType, setPage, selectAssessment, clearFilters
-}
+  setSearch, setStatus, setType, setDateRange, setPage, selectAssessment, clearFilters
+} = useAssessments()
 ```
 
-### 2. ShadCN UI for Components
+**Benefits:**
+- Single source of truth
+- Logic decoupled from UI (testable)
+- Components are pure renderers
+- No prop drilling
 
-**Decision:** Use ShadCN's Sheet for the detail panel instead of custom implementation.
+### Testing Strategy
 
-**Why:**
-- Pre-built accessibility (ARIA, keyboard nav, focus trap)
-- Smooth animations out of the box
-- Customizable with Tailwind
-- No reinventing the wheel
-
-### 3. Logic-First Development
-
-**Decision:** Built and tested the hook before any UI.
-
-**Why:**
-- Validates business logic independently
-- Catches edge cases early
-- UI becomes "just skin" over proven logic
-- 19 tests cover all critical paths
-
-### 4. Simple Score Gauge
-
-**Decision:** Used basic SVG arc math instead of a charting library.
-
-**Why:**
-- No external dependencies for a single component
-- ~50 lines of code vs. importing a library
-- Fully accessible (shows numeric value)
-- Good enough for the use case
-
-## Tradeoffs & Simplifications
-
-| Feature | Decision | Reason |
-|---------|----------|--------|
-| Date Filter | Static "Last 30 days" | Not specified in requirements, avoided scope creep |
-| Sorting | Not implemented | Not in requirements |
-| Real API | Mock data only | As specified |
-| Pixel-perfect | "Close enough" | 15% of grade, high effort for diminishing returns |
-| Dark mode | Not implemented | Not required, would add complexity |
-
-## What I'd Change with More Time
-
-### With a Real Backend
-
-1. **React Query for data fetching:**
-   ```typescript
-   const { data, isLoading, error } = useQuery(['assessments', filters], fetchAssessments)
-   ```
-
-2. **Optimistic updates for selection:**
-   - Pre-render panel while fetching full assessment details
-
-3. **Server-side pagination:**
-   - Currently client-side, would need API support
-
-### For Production Scale
-
-1. **Virtualization for large lists:**
-   - Use `@tanstack/react-virtual` for 1000+ items
-
-2. **Search debouncing:**
-   - Currently instant, would add 300ms debounce
-
-3. **Error boundaries:**
-   - Graceful degradation per component
-
-4. **Analytics:**
-   - Track filter usage, time-to-select, etc.
-
-5. **i18n:**
-   - Date formatting, labels, accessibility text
-
-## Testing Strategy
-
-**What's tested (4 test suites, 19 tests):**
-- Combined filters work correctly
-- Pagination respects boundaries
-- Search matches name AND ID
+**19 tests across 4 suites covering:**
+- Combined filter logic
+- Pagination boundaries
+- Search matching (name + ID)
 - Selection/deselection
+- Date range filtering
 
-**What's NOT tested (by design):**
-- Snapshot tests (brittle, low value)
-- UI component rendering (ShadCN handles this)
-- Visual regression (would need Chromatic/Percy)
-
-## Time Spent
-
-- Setup & configuration: ~15 min
-- Core hook & logic: ~25 min
-- Tests: ~15 min
-- UI components: ~60 min
-- Detail panel: ~25 min
-- Polish & documentation: ~20 min
-- **Total: ~2.5 hours**
+```bash
+npm run test:run   # Run once
+npm run test       # Watch mode
+```
 
 ## Scripts
 
 ```bash
-npm run dev        # Start dev server
+npm run dev        # Development server
 npm run build      # Production build
-npm run preview    # Preview production build
-npm run test       # Run tests in watch mode
-npm run test:run   # Run tests once
-npm run lint       # Run ESLint
+npm run preview    # Preview build
+npm run test       # Tests (watch)
+npm run test:run   # Tests (once)
+npm run lint       # ESLint
 ```
 
-## Live Demo
+## Design Decisions
 
-[Deployed on Vercel](https://psynth-ai.vercel.app) *(if deployed)*
+| Decision | Rationale |
+|----------|-----------|
+| ShadCN UI | Pre-built a11y, animations, customizable |
+| Custom score gauge | ~50 LOC vs chart library dependency |
+| Client-side filtering | Mock data, no backend needed |
+| Debounced search | 300ms delay for performance |
+| Date presets | 7d/30d/90d instead of date picker |
 
 ---
 
-Built for the Psynth Front-End Engineer technical assessment.
+Built by [Tomas Maritano](https://github.com/tomymaritano) for Psynth
