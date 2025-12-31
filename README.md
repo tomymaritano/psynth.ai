@@ -184,4 +184,4 @@ npm run lint       # Run ESLint
 
 ---
 
-Built with care for the Psynth technical assessment.
+Built for the Psynth Front-End Engineer technical assessment.
