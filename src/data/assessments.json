@@ -1,0 +1,568 @@
+{
+  "stats": {
+    "totalAssessments": 248,
+    "totalAssessmentsTrend": 12,
+    "completed": 186,
+    "completedTrend": 8,
+    "inProgress": 42,
+    "inProgressTrend": -3,
+    "activePatients": 124
+  },
+  "assessments": [
+    {
+      "id": "ASM-2024-001",
+      "patient": {
+        "id": "PAT-2024-0892",
+        "name": "Emily Martinez",
+        "initials": "EM",
+        "dateOfBirth": "1992-03-15",
+        "email": "emily.martinez@email.com"
+      },
+      "type": "MMPI-2",
+      "typeCode": "mmpi",
+      "status": "completed",
+      "score": 72,
+      "scoreInterpretation": "Within Normal Range",
+      "date": "2024-12-08T14:30:00Z",
+      "duration": "1h 45m",
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Validity Scale (L)", "score": 68, "maxScore": 100 },
+        { "name": "Clinical Scale (Hs)", "score": 72, "maxScore": 100 },
+        { "name": "Depression Scale (D)", "score": 58, "maxScore": 100 },
+        { "name": "Anxiety Scale (Pt)", "score": 45, "maxScore": 100 }
+      ],
+      "notes": "Patient presented with mild anxiety symptoms but overall psychological functioning appears within normal limits. Recommend follow-up assessment in 6 months to monitor progress. Consider cognitive behavioral therapy if symptoms persist."
+    },
+    {
+      "id": "ASM-2024-002",
+      "patient": {
+        "id": "PAT-2024-0891",
+        "name": "James Chen",
+        "initials": "JC",
+        "dateOfBirth": "1985-07-22",
+        "email": "james.chen@email.com"
+      },
+      "type": "Beck Depression Inventory",
+      "typeCode": "beck",
+      "status": "in-progress",
+      "score": 45,
+      "scoreInterpretation": "Moderate",
+      "date": "2024-12-08T11:15:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-002",
+        "name": "Dr. Michael Adams",
+        "title": "Psychiatrist"
+      },
+      "subscales": [
+        { "name": "Cognitive Symptoms", "score": 52, "maxScore": 100 },
+        { "name": "Affective Symptoms", "score": 48, "maxScore": 100 },
+        { "name": "Somatic Symptoms", "score": 35, "maxScore": 100 }
+      ],
+      "notes": "Assessment in progress. Patient showing engagement with the process."
+    },
+    {
+      "id": "ASM-2024-003",
+      "patient": {
+        "id": "PAT-2024-0890",
+        "name": "Sarah Rodriguez",
+        "initials": "SR",
+        "dateOfBirth": "1998-11-30",
+        "email": "sarah.rodriguez@email.com"
+      },
+      "type": "Generalized Anxiety Scale",
+      "typeCode": "anxiety",
+      "status": "completed",
+      "score": 28,
+      "scoreInterpretation": "Mild Anxiety",
+      "date": "2024-12-07T16:45:00Z",
+      "duration": "45m",
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Worry", "score": 32, "maxScore": 100 },
+        { "name": "Physical Symptoms", "score": 24, "maxScore": 100 },
+        { "name": "Cognitive", "score": 28, "maxScore": 100 }
+      ],
+      "notes": "Patient reports manageable anxiety levels. Stress management techniques discussed. Will reassess in 3 months."
+    },
+    {
+      "id": "ASM-2024-004",
+      "patient": {
+        "id": "PAT-2024-0889",
+        "name": "Michael Johnson",
+        "initials": "MJ",
+        "dateOfBirth": "1979-04-08",
+        "email": "michael.johnson@email.com"
+      },
+      "type": "16PF Personality",
+      "typeCode": "personality",
+      "status": "pending",
+      "score": null,
+      "scoreInterpretation": null,
+      "date": "2024-12-07T09:00:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-003",
+        "name": "Dr. Lisa Park",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [],
+      "notes": "Awaiting patient to complete assessment. Reminder sent."
+    },
+    {
+      "id": "ASM-2024-005",
+      "patient": {
+        "id": "PAT-2024-0888",
+        "name": "Amanda Williams",
+        "initials": "AW",
+        "dateOfBirth": "1990-09-12",
+        "email": "amanda.williams@email.com"
+      },
+      "type": "MMPI-2",
+      "typeCode": "mmpi",
+      "status": "cancelled",
+      "score": null,
+      "scoreInterpretation": null,
+      "date": "2024-12-06T15:15:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [],
+      "notes": "Patient cancelled due to scheduling conflict. Rescheduling in progress."
+    },
+    {
+      "id": "ASM-2024-006",
+      "patient": {
+        "id": "PAT-2024-0887",
+        "name": "David Kim",
+        "initials": "DK",
+        "dateOfBirth": "1988-01-25",
+        "email": "david.kim@email.com"
+      },
+      "type": "Beck Depression Inventory",
+      "typeCode": "beck",
+      "status": "completed",
+      "score": 15,
+      "scoreInterpretation": "Minimal Depression",
+      "date": "2024-12-06T10:30:00Z",
+      "duration": "30m",
+      "administeredBy": {
+        "id": "DR-002",
+        "name": "Dr. Michael Adams",
+        "title": "Psychiatrist"
+      },
+      "subscales": [
+        { "name": "Cognitive Symptoms", "score": 18, "maxScore": 100 },
+        { "name": "Affective Symptoms", "score": 12, "maxScore": 100 },
+        { "name": "Somatic Symptoms", "score": 15, "maxScore": 100 }
+      ],
+      "notes": "Patient showing significant improvement since last assessment. Continue current treatment plan."
+    },
+    {
+      "id": "ASM-2024-007",
+      "patient": {
+        "id": "PAT-2024-0886",
+        "name": "Jennifer Lopez",
+        "initials": "JL",
+        "dateOfBirth": "1995-06-18",
+        "email": "jennifer.lopez@email.com"
+      },
+      "type": "Generalized Anxiety Scale",
+      "typeCode": "anxiety",
+      "status": "completed",
+      "score": 62,
+      "scoreInterpretation": "Moderate-Severe Anxiety",
+      "date": "2024-12-05T14:00:00Z",
+      "duration": "50m",
+      "administeredBy": {
+        "id": "DR-003",
+        "name": "Dr. Lisa Park",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Worry", "score": 75, "maxScore": 100 },
+        { "name": "Physical Symptoms", "score": 58, "maxScore": 100 },
+        { "name": "Cognitive", "score": 53, "maxScore": 100 }
+      ],
+      "notes": "Elevated anxiety levels noted. Recommend immediate intervention. Referred to psychiatrist for medication evaluation."
+    },
+    {
+      "id": "ASM-2024-008",
+      "patient": {
+        "id": "PAT-2024-0885",
+        "name": "Robert Brown",
+        "initials": "RB",
+        "dateOfBirth": "1972-12-03",
+        "email": "robert.brown@email.com"
+      },
+      "type": "MMPI-2",
+      "typeCode": "mmpi",
+      "status": "in-progress",
+      "score": 55,
+      "scoreInterpretation": "In Progress",
+      "date": "2024-12-05T09:30:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Validity Scale (L)", "score": 60, "maxScore": 100 },
+        { "name": "Clinical Scale (Hs)", "score": 50, "maxScore": 100 }
+      ],
+      "notes": "Patient taking breaks during assessment. Expected completion within 24 hours."
+    },
+    {
+      "id": "ASM-2024-009",
+      "patient": {
+        "id": "PAT-2024-0884",
+        "name": "Maria Garcia",
+        "initials": "MG",
+        "dateOfBirth": "1983-08-27",
+        "email": "maria.garcia@email.com"
+      },
+      "type": "16PF Personality",
+      "typeCode": "personality",
+      "status": "completed",
+      "score": 78,
+      "scoreInterpretation": "Above Average",
+      "date": "2024-12-04T13:15:00Z",
+      "duration": "1h 20m",
+      "administeredBy": {
+        "id": "DR-003",
+        "name": "Dr. Lisa Park",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Warmth", "score": 82, "maxScore": 100 },
+        { "name": "Reasoning", "score": 75, "maxScore": 100 },
+        { "name": "Emotional Stability", "score": 70, "maxScore": 100 },
+        { "name": "Dominance", "score": 65, "maxScore": 100 },
+        { "name": "Social Boldness", "score": 88, "maxScore": 100 }
+      ],
+      "notes": "Strong personality profile. High extraversion and openness scores. Well-suited for leadership roles."
+    },
+    {
+      "id": "ASM-2024-010",
+      "patient": {
+        "id": "PAT-2024-0883",
+        "name": "William Taylor",
+        "initials": "WT",
+        "dateOfBirth": "1968-02-14",
+        "email": "william.taylor@email.com"
+      },
+      "type": "Beck Depression Inventory",
+      "typeCode": "beck",
+      "status": "pending",
+      "score": null,
+      "scoreInterpretation": null,
+      "date": "2024-12-04T10:00:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-002",
+        "name": "Dr. Michael Adams",
+        "title": "Psychiatrist"
+      },
+      "subscales": [],
+      "notes": "Initial assessment scheduled. Patient is new to the practice."
+    },
+    {
+      "id": "ASM-2024-011",
+      "patient": {
+        "id": "PAT-2024-0882",
+        "name": "Elizabeth White",
+        "initials": "EW",
+        "dateOfBirth": "1991-05-09",
+        "email": "elizabeth.white@email.com"
+      },
+      "type": "Generalized Anxiety Scale",
+      "typeCode": "anxiety",
+      "status": "completed",
+      "score": 42,
+      "scoreInterpretation": "Moderate Anxiety",
+      "date": "2024-12-03T15:30:00Z",
+      "duration": "40m",
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Worry", "score": 48, "maxScore": 100 },
+        { "name": "Physical Symptoms", "score": 38, "maxScore": 100 },
+        { "name": "Cognitive", "score": 40, "maxScore": 100 }
+      ],
+      "notes": "Moderate anxiety levels consistent with work-related stress. Recommended stress management program."
+    },
+    {
+      "id": "ASM-2024-012",
+      "patient": {
+        "id": "PAT-2024-0881",
+        "name": "Christopher Lee",
+        "initials": "CL",
+        "dateOfBirth": "1987-10-21",
+        "email": "christopher.lee@email.com"
+      },
+      "type": "MMPI-2",
+      "typeCode": "mmpi",
+      "status": "completed",
+      "score": 65,
+      "scoreInterpretation": "Within Normal Range",
+      "date": "2024-12-03T11:00:00Z",
+      "duration": "1h 30m",
+      "administeredBy": {
+        "id": "DR-003",
+        "name": "Dr. Lisa Park",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Validity Scale (L)", "score": 62, "maxScore": 100 },
+        { "name": "Clinical Scale (Hs)", "score": 68, "maxScore": 100 },
+        { "name": "Depression Scale (D)", "score": 55, "maxScore": 100 },
+        { "name": "Anxiety Scale (Pt)", "score": 75, "maxScore": 100 }
+      ],
+      "notes": "Overall healthy psychological profile. Slightly elevated anxiety scale warrants monitoring."
+    },
+    {
+      "id": "ASM-2024-013",
+      "patient": {
+        "id": "PAT-2024-0880",
+        "name": "Ashley Davis",
+        "initials": "AD",
+        "dateOfBirth": "1994-07-16",
+        "email": "ashley.davis@email.com"
+      },
+      "type": "Beck Depression Inventory",
+      "typeCode": "beck",
+      "status": "in-progress",
+      "score": 32,
+      "scoreInterpretation": "In Progress",
+      "date": "2024-12-02T16:00:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-002",
+        "name": "Dr. Michael Adams",
+        "title": "Psychiatrist"
+      },
+      "subscales": [
+        { "name": "Cognitive Symptoms", "score": 38, "maxScore": 100 },
+        { "name": "Affective Symptoms", "score": 30, "maxScore": 100 }
+      ],
+      "notes": "Patient is completing assessment at home. Follow-up scheduled."
+    },
+    {
+      "id": "ASM-2024-014",
+      "patient": {
+        "id": "PAT-2024-0879",
+        "name": "Daniel Martinez",
+        "initials": "DM",
+        "dateOfBirth": "1976-03-28",
+        "email": "daniel.martinez@email.com"
+      },
+      "type": "16PF Personality",
+      "typeCode": "personality",
+      "status": "cancelled",
+      "score": null,
+      "scoreInterpretation": null,
+      "date": "2024-12-02T09:00:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [],
+      "notes": "Assessment cancelled per patient request. Insurance verification pending."
+    },
+    {
+      "id": "ASM-2024-015",
+      "patient": {
+        "id": "PAT-2024-0878",
+        "name": "Jessica Wilson",
+        "initials": "JW",
+        "dateOfBirth": "1999-11-05",
+        "email": "jessica.wilson@email.com"
+      },
+      "type": "Generalized Anxiety Scale",
+      "typeCode": "anxiety",
+      "status": "completed",
+      "score": 85,
+      "scoreInterpretation": "Severe Anxiety",
+      "date": "2024-12-01T14:30:00Z",
+      "duration": "55m",
+      "administeredBy": {
+        "id": "DR-003",
+        "name": "Dr. Lisa Park",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Worry", "score": 92, "maxScore": 100 },
+        { "name": "Physical Symptoms", "score": 78, "maxScore": 100 },
+        { "name": "Cognitive", "score": 85, "maxScore": 100 }
+      ],
+      "notes": "Severe anxiety requiring immediate intervention. Started on medication. Weekly therapy sessions scheduled."
+    },
+    {
+      "id": "ASM-2024-016",
+      "patient": {
+        "id": "PAT-2024-0877",
+        "name": "Matthew Anderson",
+        "initials": "MA",
+        "dateOfBirth": "1982-09-19",
+        "email": "matthew.anderson@email.com"
+      },
+      "type": "MMPI-2",
+      "typeCode": "mmpi",
+      "status": "completed",
+      "score": 48,
+      "scoreInterpretation": "Within Normal Range",
+      "date": "2024-12-01T10:15:00Z",
+      "duration": "1h 50m",
+      "administeredBy": {
+        "id": "DR-002",
+        "name": "Dr. Michael Adams",
+        "title": "Psychiatrist"
+      },
+      "subscales": [
+        { "name": "Validity Scale (L)", "score": 45, "maxScore": 100 },
+        { "name": "Clinical Scale (Hs)", "score": 52, "maxScore": 100 },
+        { "name": "Depression Scale (D)", "score": 48, "maxScore": 100 },
+        { "name": "Anxiety Scale (Pt)", "score": 47, "maxScore": 100 }
+      ],
+      "notes": "Stable psychological profile. No concerns at this time. Annual reassessment recommended."
+    },
+    {
+      "id": "ASM-2024-017",
+      "patient": {
+        "id": "PAT-2024-0876",
+        "name": "Olivia Thomas",
+        "initials": "OT",
+        "dateOfBirth": "1997-04-12",
+        "email": "olivia.thomas@email.com"
+      },
+      "type": "Beck Depression Inventory",
+      "typeCode": "beck",
+      "status": "completed",
+      "score": 22,
+      "scoreInterpretation": "Mild Depression",
+      "date": "2024-11-30T13:00:00Z",
+      "duration": "35m",
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Cognitive Symptoms", "score": 25, "maxScore": 100 },
+        { "name": "Affective Symptoms", "score": 22, "maxScore": 100 },
+        { "name": "Somatic Symptoms", "score": 19, "maxScore": 100 }
+      ],
+      "notes": "Mild depressive symptoms, likely situational. Recommended supportive therapy."
+    },
+    {
+      "id": "ASM-2024-018",
+      "patient": {
+        "id": "PAT-2024-0875",
+        "name": "Andrew Jackson",
+        "initials": "AJ",
+        "dateOfBirth": "1970-08-07",
+        "email": "andrew.jackson@email.com"
+      },
+      "type": "16PF Personality",
+      "typeCode": "personality",
+      "status": "pending",
+      "score": null,
+      "scoreInterpretation": null,
+      "date": "2024-11-30T09:30:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-003",
+        "name": "Dr. Lisa Park",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [],
+      "notes": "Pre-employment assessment. Awaiting HR authorization to proceed."
+    },
+    {
+      "id": "ASM-2024-019",
+      "patient": {
+        "id": "PAT-2024-0874",
+        "name": "Sophia Harris",
+        "initials": "SH",
+        "dateOfBirth": "1993-12-24",
+        "email": "sophia.harris@email.com"
+      },
+      "type": "Generalized Anxiety Scale",
+      "typeCode": "anxiety",
+      "status": "in-progress",
+      "score": 38,
+      "scoreInterpretation": "In Progress",
+      "date": "2024-11-29T15:45:00Z",
+      "duration": null,
+      "administeredBy": {
+        "id": "DR-002",
+        "name": "Dr. Michael Adams",
+        "title": "Psychiatrist"
+      },
+      "subscales": [
+        { "name": "Worry", "score": 42, "maxScore": 100 },
+        { "name": "Physical Symptoms", "score": 34, "maxScore": 100 }
+      ],
+      "notes": "Remote assessment in progress. Patient experiencing technical difficulties."
+    },
+    {
+      "id": "ASM-2024-020",
+      "patient": {
+        "id": "PAT-2024-0873",
+        "name": "Ryan Clark",
+        "initials": "RC",
+        "dateOfBirth": "1986-06-30",
+        "email": "ryan.clark@email.com"
+      },
+      "type": "MMPI-2",
+      "typeCode": "mmpi",
+      "status": "completed",
+      "score": 58,
+      "scoreInterpretation": "Within Normal Range",
+      "date": "2024-11-29T11:00:00Z",
+      "duration": "1h 40m",
+      "administeredBy": {
+        "id": "DR-001",
+        "name": "Dr. Rebecca Torres",
+        "title": "Clinical Psychologist"
+      },
+      "subscales": [
+        { "name": "Validity Scale (L)", "score": 55, "maxScore": 100 },
+        { "name": "Clinical Scale (Hs)", "score": 62, "maxScore": 100 },
+        { "name": "Depression Scale (D)", "score": 58, "maxScore": 100 },
+        { "name": "Anxiety Scale (Pt)", "score": 57, "maxScore": 100 }
+      ],
+      "notes": "Balanced profile. Patient demonstrates good psychological resilience. Continue monitoring."
+    }
+  ],
+  "assessmentTypes": [
+    { "code": "mmpi", "name": "MMPI-2", "fullName": "Minnesota Multiphasic Personality Inventory-2" },
+    { "code": "beck", "name": "Beck Depression Inventory", "fullName": "Beck Depression Inventory-II" },
+    { "code": "anxiety", "name": "Generalized Anxiety Scale", "fullName": "Generalized Anxiety Disorder 7-item Scale" },
+    { "code": "personality", "name": "16PF Personality", "fullName": "16 Personality Factors Questionnaire" }
+  ],
+  "statusOptions": [
+    { "value": "completed", "label": "Completed" },
+    { "value": "in-progress", "label": "In Progress" },
+    { "value": "pending", "label": "Pending" },
+    { "value": "cancelled", "label": "Cancelled" }
+  ]
+}
