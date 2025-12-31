@@ -26,8 +26,8 @@ const variantStyles: Record<StatsVariant, { icon: string; iconBg: string }> = {
     iconBg: 'bg-warning-50',
   },
   purple: {
-    icon: 'text-purple-600',
-    iconBg: 'bg-purple-100',
+    icon: 'text-[#9333EA]',
+    iconBg: 'bg-[#F3E8FF]',
   },
 }
 

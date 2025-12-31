@@ -97,7 +97,7 @@ interface AssessmentCardListProps {
 
 export function AssessmentCardList({ assessments, onSelect }: AssessmentCardListProps) {
   return (
-    <div className="md:hidden flex flex-col gap-3">
+    <div className="md:hidden flex flex-col gap-3 mt-6">
       {assessments.map((assessment) => (
         <AssessmentCard
           key={assessment.id}

@@ -3,7 +3,7 @@ import { formatDate, formatTime, getInitials } from '@/lib/utils'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { StatusBadge } from './StatusBadge'
 import { ScoreBar } from './ScoreBar'
-import { Eye, Download, MoreVertical } from 'lucide-react'
+import { Eye, Download, MoreVertical, FileText } from 'lucide-react'
 
 interface AssessmentTableProps {
   assessments: Assessment[]
@@ -72,7 +72,12 @@ export function AssessmentTable({ assessments, onSelect }: AssessmentTableProps)
 
               {/* Assessment Type */}
               <td className="py-4 px-5">
-                <span className="font-medium text-sm text-gray-800">{assessment.type}</span>
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-md bg-gray-100 flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-3.5 h-3.5 text-gray-600" strokeWidth={2} />
+                  </div>
+                  <span className="font-medium text-sm text-gray-800">{assessment.type}</span>
+                </div>
               </td>
 
               {/* Status */}

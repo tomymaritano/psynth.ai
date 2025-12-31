@@ -73,7 +73,7 @@ function App() {
       ) : (
         <>
           {/* Desktop Table + Pagination */}
-          <div className="hidden md:block bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="hidden md:block bg-white rounded-xl border border-gray-200 overflow-hidden mt-6">
             <AssessmentTable
               assessments={data}
               onSelect={selectAssessment}

@@ -142,7 +142,7 @@ export function AssessmentDetail({ assessment, onClose }: AssessmentDetailProps)
                       </div>
                       <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all duration-400 ${colors.bar}`}
+                          className={`h-full rounded-full transition-all ${colors.bar}`}
                           style={{ width: `${percentage}%` }}
                         />
                       </div>
